@@ -1,14 +1,21 @@
 #include <string.h>
 #include <iostream>
-#include "StringFunctions.hpp"
+#include "StringFactory.hpp"
+
 using namespace std ;
 int main()
 {
-    //char string[]=  "123+456-789*101112/131415";
-     char delims[]=  "*/+-";
-    string Animals[1] = {"123+456-789*101112/131415"};
-    string  * answer = StringFunctions::returnStringArray(Animals[0],Animals[0]);
-    StringFunctions::display(answer);
- 
-  return 0;
+
+
+   string * arrayStart = StringFactory::split("1111+2-34*56/78","+-*/");
+
+   for(int i = 0; i <sizeof(arrayStart)+1; i++)
+   {
+       cout<<  arrayStart[i]<< "\n";
+
+   }
+   
+  
+
+
 }

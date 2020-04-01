@@ -1,9 +1,10 @@
 #include "StringFactory.hpp"
+#include <string.h>
 using namespace std;
 
-string * StringFactory::split(string s, string delims)
+Queue * StringFactory::split(string s, string delims)
 {
-    LinkedList * ll = new LinkedList();
+    Queue * q = new Queue();
     char* fullChar = StringFactory::stringToCharArray(s);
     char *fullChar2 = StringFactory::stringToCharArray(s);
     char* delimsChar = StringFactory::stringToCharArray(delims);
@@ -15,7 +16,7 @@ string * StringFactory::split(string s, string delims)
     bool toggle = false;
     std::size_t found = firstTester.find_first_of(delims);
 
-    tokenizer = strtok (fullChar,delimsChar);
+    tokenizer = strtok(fullChar,delimsChar);
     delimTokens = strpbrk(fullChar2,delimsChar);
     if( found != std::string::npos)
     {
@@ -30,49 +31,42 @@ string * StringFactory::split(string s, string delims)
             if(toggle == true)
             {
                 string thingToAdd =  string(1,delimTokens[0]);
-                ll->addEnd(thingToAdd);
+                q->Enqueue(thingToAdd);
                 delimTokens = strpbrk (delimTokens+1 , delimsChar);
-                ll->addEnd(tokenizer);
+                q->Enqueue(tokenizer);
                 tokenizer = strtok (NULL, delimsChar);
             }
             else
             {
                 string thingToAdd =  string(1,delimTokens[0]);
-                ll->addEnd(tokenizer);
+                q->Enqueue(tokenizer);
                 tokenizer = strtok (NULL, delimsChar);
-                ll->addEnd(thingToAdd);
+                q->Enqueue(thingToAdd);
                 delimTokens = strpbrk (delimTokens+1 , delimsChar);
             }
         }
         else if (tokenizer!=0)
         {
-            ll->addEnd(tokenizer);
+            q->Enqueue(tokenizer);
             tokenizer = strtok (NULL, delimsChar);
         }
         else if (delimTokens != 0)
         {
             string thingToAdd =  string(1,delimTokens[0]);
-            ll->addEnd(thingToAdd);
+            q->Enqueue(thingToAdd);
             delimTokens = strpbrk (delimTokens+1 , delimsChar);
         }
     }
        std::cout<<"\n"<<"\n";
        //ll->display();
        std::cout<<"\n"<<"\n";
-       int c = ll->count;
-       string * arrayStart =  ll->toStringArray();
-       
-       return arrayStart;
+       return q;
 }
 
 char * StringFactory::stringToCharArray(string s)
 {
-
     char * cstr = new char [s.length()+1];
     strcpy (cstr, s.c_str());
-
-
-
-
     return  cstr;
 }
+

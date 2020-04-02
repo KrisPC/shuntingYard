@@ -1,19 +1,18 @@
-#include<iostream>
-using namespace std;
 #include "Node.hpp"
+using namespace std;
 
 class Queue
 {
 
-    private:
-        Node * head;
-        
-
     public:
         Queue();
-        void Enqueue(string payload);
-        int count;
+        void Enqueue(string s);
         string Dequeue();
+        int count;
         void display();
+
+
+    private:
+        Node * head;
 
 };

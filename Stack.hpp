@@ -1,10 +1,9 @@
-#ifndef Stack_hpp
 #define Stack_hpp
+
 #include "Node.hpp"
 
 class Stack
 {
-
     private:
         Node* top;
         int count;
@@ -14,8 +13,6 @@ class Stack
         void push(string s);
         string pop();
         string peek();
-        int getCount();
         void display();
+        
 };
-
-#endif

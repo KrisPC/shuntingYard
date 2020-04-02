@@ -1,19 +1,21 @@
 #include "Stack.hpp"
 
-void Stack::push(string s)
+Stack::Stack()
 {
-    Node* n = new Node(s);
-    if(this->top)
-    {
-       n->setNextNode(this->top);
-       this->top = n;
-
-    }
-    this->top = n;
-    this->count++;
-    
+    this->top = 0;
+    this->count = 0;
 }
 
+void Stack::push(string s)
+{
+    Node * n = new Node(s);
+    if(this->top)
+    {
+        n->setNextNode(this->top);
+    }
+    this->top = n;
+    this->count ++;
+}
 
 string Stack::pop()
 {
@@ -21,35 +23,24 @@ string Stack::pop()
     {
         Node* temp = this->top;
         this->top = this->top->getNextNode();
-        string payload2Return = temp->getPayload();
+        string returnVal = temp->getPayload();
         delete temp;
-        return payload2Return;
+        return returnVal;
     }
-}
-        
-        
-string Stack::peek()
-{
-    if(this->top)
-    {
-        return this->top->getPayload();
-    }
-
     return 0;
 }
 
-int Stack::getCount()
+string Stack::peek()
 {
-    return this->count;
+    return this->top->getPayload();
 }
 
 void Stack::display()
 {
-    Node* currNode = this->top;
+    Node * currNode = this->top;
     while(currNode)
     {
-        cout << currNode->getPayload();
+        cout<<currNode->getPayload();
         currNode = currNode->getNextNode();
     }
-    return;
 }

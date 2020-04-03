@@ -33,26 +33,33 @@ string Queue::Dequeue()
         return "Empty Queue";
     
     }
-    else if(this->count == 1)
-    {
-        string temp = head->getPayload();
-        this->head = 0;
-        this->count = 0;
-        return temp;
-    }
+    // else if(this->count == 1)
+    // {
+    //     string temp = head->getPayload();
+    //     this->head = 0;
+    //     this->count = 0;
+    //     return temp;
+    // }
+    // else
+    // {
+    //     Node* currNode = this->head;
+    //     Node* prevNode;
+    //     while(currNode->getNextNode())
+    //     {
+    //         prevNode = currNode;
+    //         currNode = currNode->getNextNode();
+    //     }
+    //     prevNode->setNextNode(0);
+    //     this->count -= 1;
+    //     return currNode->getPayload();
+    // }
     else
     {
-        Node* currNode = this->head;
-        Node* prevNode;
-        while(currNode->getNextNode())
-        {
-            prevNode = currNode;
-            currNode = currNode->getNextNode();
-        }
-        prevNode->setNextNode(0);
-        this->count -= 1;
-        return currNode->getPayload();
+        string returnVal = this->head->getPayload();
+        this->head = this->head->getNextNode();
+        return returnVal;
     }
+    
     
     
 }
@@ -65,4 +72,18 @@ void Queue::display()
         cout << currNode->getPayload() << "\n";
         currNode = currNode->getNextNode();
     }
+}
+
+Node * Queue::peek()
+{
+    if(this->head)
+    {
+        return this->head;
+    }
+
+    else
+    {
+        return 0;
+    }
+    
 }

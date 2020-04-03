@@ -70,11 +70,11 @@ char * StringFunctions::stringToCharArray(string s)
     return  cstr;
 }
 
-bool StringFunctions::isInString(string searchString, char charToFind)
+bool StringFunctions::isInString(string searchString, string charToFind)
 {
     for(int i = 0; i <searchString.length(); i++)
     {
-        if(searchString[i] == charToFind)
+        if( string (1, searchString[i]) == charToFind)
         {
             return 1;
         }

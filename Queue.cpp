@@ -1,5 +1,6 @@
 #include "Queue.hpp"
 
+
 Queue::Queue()
 {
     this->head = 0;
@@ -8,51 +9,39 @@ Queue::Queue()
 
 void Queue::Enqueue(string payload)
 {
-    Node* n = new Node(payload);
+    Node * n = new Node(payload);
     if(!this->head)
     {
         this->head = n;
     }
     else
     {
-        //run to the end of the list
+        //run to end of the list
         Node* currNode = this->head;
         while(currNode->getNextNode())
         {
-            currNode = currNode->getNextNode();
+            currNode=currNode->getNextNode();
         }
         currNode->setNextNode(n);
     }
-    this->count++;
+    this->count ++;
+    
 }
 
 string Queue::Dequeue()
 {
-    if(this->count == 0)
+    if(this->count ==0)
     {
-        return "Empty Queue";
-    
+        return "Empty Queue, can't remove";
     }
-    // else if(this->count == 1)
-    // {
-    //     string temp = head->getPayload();
-    //     this->head = 0;
-    //     this->count = 0;
-    //     return temp;
-    // }
-    // else
-    // {
-    //     Node* currNode = this->head;
-    //     Node* prevNode;
-    //     while(currNode->getNextNode())
-    //     {
-    //         prevNode = currNode;
-    //         currNode = currNode->getNextNode();
-    //     }
-    //     prevNode->setNextNode(0);
-    //     this->count -= 1;
-    //     return currNode->getPayload();
-    // }
+    else if(this->count==1)
+    {
+        string temp = head->getPayload();
+        this->head = 0;
+        this->count=0;
+        return temp;
+    }
+
     else
     {
         string returnVal = this->head->getPayload();
@@ -61,18 +50,32 @@ string Queue::Dequeue()
     }
     
     
-    
 }
 
 void Queue::display()
 {
     Node * currNode = this->head;
-    for(int i = 0; i < this->count; i++)
+    while(currNode->getNextNode())
     {
-        cout << currNode->getPayload() << "\n";
+        cout << currNode->getPayload()<<", ";
         currNode = currNode->getNextNode();
     }
+    cout << currNode->getPayload();
+    cout<<"\n";
 }
+
+void Queue::fancyDisplay()
+{
+    Node * currNode = this->head;
+    while(currNode->getNextNode())
+    {
+        cout << currNode->getPayload()<<", ";
+        currNode = currNode->getNextNode();
+    }
+    cout << currNode->getPayload();
+    cout<<"\n";
+}
+
 
 Node * Queue::peek()
 {
@@ -80,10 +83,5 @@ Node * Queue::peek()
     {
         return this->head;
     }
-
-    else
-    {
-        return 0;
-    }
-    
+    else return 0;
 }

@@ -10,7 +10,7 @@ int main()
 {
 
 
-   Queue * q = StringFunctions::splitString("(5*4+3*2)-1","+-*/");
+   Queue * q = StringFunctions::splitString("(1-4*(1+1))*3+5","+-*/()");
 
 //    for(int i = 0; i <sizeof(arrayStart)+1; i++)
 //    {
@@ -29,8 +29,10 @@ int main()
     // }
     // cout<<"\n";
     // myStack->display();
-  
+
     Queue * answer = ShuntingYardAlgorithm::performAlgorithm(q);
-    
+    //answer->display();
+    answer->fancyDisplay();
+
 
 }

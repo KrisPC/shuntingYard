@@ -25,6 +25,7 @@ string Stack::pop()
         this->top = this->top->getNextNode();
         string returnVal = temp->getPayload();
         delete temp;
+        this->count -=1;
         return returnVal;
     }
     return 0;
@@ -32,8 +33,17 @@ string Stack::pop()
 
 string Stack::peek()
 {
-    return this->top->getPayload();
+    if(this->count>0)
+    {
+        return this->top->getPayload();
+    }
+    else
+    {
+        return "";
+    }
 }
+    
+    
 
 void Stack::display()
 {
@@ -43,4 +53,5 @@ void Stack::display()
         cout<<currNode->getPayload();
         currNode = currNode->getNextNode();
     }
+    cout<<"\n";
 }
